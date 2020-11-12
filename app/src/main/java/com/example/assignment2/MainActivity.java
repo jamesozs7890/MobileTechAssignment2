@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openAddExpense() {
-        Intent intent = new Intent(this, addExpense.class);
+        Intent intent = new Intent(this, addExpensesPage.class);
         startActivity(intent);
     }
 }
