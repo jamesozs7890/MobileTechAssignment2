@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/extraDescLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".addExpensesPage">
@@ -9,7 +10,7 @@
     <TextView
         android:id="@+id/addExpenseTitle"
         android:layout_width="0dp"
-        android:layout_height="75dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:fontFamily="@font/autour_one"
@@ -19,7 +20,7 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -31,7 +32,7 @@
         android:id="@+id/verticalLayout1"
         android:layout_width="0dp"
         android:layout_height="125dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="25dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -112,10 +113,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/verticalLayout2"
         android:layout_width="0dp"
         android:layout_height="125dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -166,14 +167,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/redioButtons"
-        android:layout_width="410dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="24dp"
+        android:id="@+id/radioButtons"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/verticalLayout2">
 
         <TextView
             android:id="@+id/paymentText"
@@ -190,16 +191,110 @@
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/cashRadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Cash" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/Cash"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/eWalletRadioButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="@string/MobileWallet"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/creditCardRadioButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="@string/CreditCard"
+                android:textAlignment="center"
+                android:textSize="18sp" />
         </RadioGroup>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButtons">
+
+        <TextView
+            android:id="@+id/extraDescTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/border"
+            android:fontFamily="@font/autour_one"
+            android:gravity="center_vertical"
+            android:text="@string/ExtraDescriptionText"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            tools:ignore="RtlCompat" />
+
+        <EditText
+            android:id="@+id/extraDescPlainText"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:autofillHints=""
+            android:background="@drawable/empty_border"
+            android:ems="10"
+            android:hint="@string/EnterDescriptionHere"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/saveButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:text="@string/Save"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/clearButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:text="@string/Clear"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/backButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:text="@string/Back"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 
