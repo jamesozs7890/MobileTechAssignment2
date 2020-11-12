@@ -1,31 +1,27 @@
 <resources>
     <string name="app_name">Assignment 2</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
     <string name="Expenses">Expenses</string>
     <string name="AddExpensesText">Add Daily Expenses </string>
 
-    <string name="DateText">Date</string>
+    <string name="DateText">Date:</string>
     <string name="DateInput">Enter The Date Of Expense</string>
 
-    <string name="AmountText">Amount</string>
+    <string name="AmountText">Amount:</string>
     <string name="AmountInput">Enter Amount</string>
 
     <string name="CategoryText">Category</string>
 
-    <string-array name="CategoryInput">Category
+    <string-array name="CategoryInput">
         <item>Food </item>
         <item>Entertainment </item>
         <item>Transport </item>
+    </string-array>
+
+    <string-array name="ChoiceInput">
+        <item>Please select the category first</item>
     </string-array>
 
     <string name="PaymentMethodText">Payment Method</string>
