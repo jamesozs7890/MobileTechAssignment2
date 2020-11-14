@@ -64,6 +64,7 @@
                 android:id="@+id/dataTextView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="5sp"
                 android:layout_weight="1"
                 android:autofillHints="@string/DateInput"
                 android:background="@drawable/border"
@@ -78,17 +79,22 @@
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editTextDate"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:autofillHints="dd/mm/yy"
                 android:background="@drawable/empty_border"
-                android:ems="10"
-                android:hint="@string/DateInput"
-                android:inputType="date"
-                android:textAlignment="center" />
+                android:gravity="center_vertical"
+                android:hint="@string/select_date"
+                android:lineSpacingExtra="8sp"
+                android:orientation="horizontal"
+                android:text="@string/DateInput"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
         </LinearLayout>
 
         <LinearLayout
