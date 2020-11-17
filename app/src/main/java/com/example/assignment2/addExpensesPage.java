@@ -9,19 +9,30 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class addExpensesPage extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expenses_page);
+        final Spinner category = (Spinner) findViewById(R.id.categorySpinner);
+        final Spinner choice = (Spinner) findViewById(R.id.choiceSpinner);
+        final String[] food= new String[] {"Breakfast", "Lunch","Dinner","Other"};
+        final String[] entertainment = new String[] {"Gaming", "Movies","Activities","Other"};
+        final String[] transport = new String[] {"Car", "Bus","Other"};
         final TextView dateEditText = findViewById(R.id.editTextDate);
         final EditText amountEditText = findViewById(R.id.amountEditText);
         final EditText descriptionEditText = findViewById(R.id.extraDescPlainText);
@@ -71,6 +82,47 @@ public class addExpensesPage extends AppCompatActivity {
                 dateEditText.setText(date);
             }
         };
+        //Spinner
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                //Change the conversion spinner's items and others context based on user's input temperature
+                switch(position){
+                    case 0:
+                        Toast.makeText(addExpensesPage.this,
+                                "You have selected Kelvin", Toast.LENGTH_SHORT).show();
+                        ArrayAdapter<String> foodChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                                android.R.layout.simple_spinner_item, food);
+                        foodChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        choice.setAdapter(foodChoice);
+                        break;
+                    case 1:
+                        Toast.makeText(addExpensesPage.this, "You have selected Celsius", Toast.LENGTH_SHORT).show();
+                        ArrayAdapter<String> entertainmentChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                                android.R.layout.simple_spinner_item, entertainment);
+                        entertainmentChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        choice.setAdapter(entertainmentChoice);
+
+                        break;
+                    case 2:
+                        Toast.makeText(addExpensesPage.this, "Fahrenheit", Toast.LENGTH_SHORT).show();
+                        ArrayAdapter<String> transportChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                                android.R.layout.simple_spinner_item, transport);
+                        transportChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        choice.setAdapter(transportChoice);
+
+                        break;
+
+                }
+
+            }
+            //Nothing happen when nothing selected
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
     public void naviMain(){
         Intent navi = new Intent(this,MainActivity.class);
