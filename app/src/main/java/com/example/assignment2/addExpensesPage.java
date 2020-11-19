@@ -48,7 +48,6 @@ public class addExpensesPage extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
                 Date chosenDate = (Date) dateEditText.getText();
                 Double amount = 1.0;
                 String categoryValue = category.getSelectedItem().toString() ;
@@ -66,15 +65,14 @@ public class addExpensesPage extends AppCompatActivity {
                         //Enter a number
                     }
                 }
-                */
-                list = new ArrayList<>();
-                list.add( new Expenses(2.3,"categoryValue","categoryChoiceValue","pMethod","description") );
+                list.add( new Expenses(chosenDate,amount,categoryValue,categoryChoiceValue,pMethod,description) );
                 Intent intent = new Intent(addExpensesPage.this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("List", list);
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();
+
             }
         });
         clearBtn.setOnClickListener(new View.OnClickListener() {
