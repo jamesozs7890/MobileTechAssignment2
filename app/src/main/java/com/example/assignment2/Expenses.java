@@ -3,15 +3,12 @@ package com.example.assignment2;
 import java.util.Date;
 
 public class Expenses {
-    private Date expenseDate;
     private Double amount;
     private String category;
     private String category_choice;
     private String pMethod;
     private String description;
-    public Expenses(Date expenseDate, Double amount , String category,
-                    String category_choice, String pMethod, String description  ) {
-        this.expenseDate = expenseDate;
+    public Expenses( Double amount , String category, String category_choice, String pMethod, String description  ) {
         this.amount = amount;
         this.category= category;
         this.category_choice = category_choice;
@@ -19,9 +16,12 @@ public class Expenses {
         this.description  = description ;
     }
 
-    public void setExpenseDate(Date expenseDate) {
-        this.expenseDate = expenseDate;
+
+    public String display() {
+            String output = " Amount: " + amount + "\n Desc: " + description;
+            return output;
     }
+
 
     public void setAmount(Double amount) {
         this.amount = amount;
@@ -43,9 +43,6 @@ public class Expenses {
         this.description = description;
     }
 
-    public Date getExpenseDate() {
-        return expenseDate;
-    }
     public Double getAmount() {
         return amount;
     }
