@@ -123,9 +123,9 @@
 
             <EditText
                 android:id="@+id/amountEditText"
-                android:layout_marginHorizontal="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_weight="1"
                 android:autofillHints="@string/AmountInput"
                 android:background="@drawable/empty_border"
@@ -289,9 +289,10 @@
                     android:background="@drawable/empty_border"
                     android:ems="10"
                     android:hint="@string/EnterDescriptionHere"
-                    android:padding="10dp"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine|textPersonName"
+                    android:maxLength="300"
                     android:overScrollMode="ifContentScrolls"
+                    android:padding="10dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:textAlignment="textStart" />
             </LinearLayout>

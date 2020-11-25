@@ -11,6 +11,17 @@
         android:layout_height="671dp"
         android:layout_marginTop="60dp">
 
+        <ListView
+            android:id="@+id/recordListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider"
+            android:dividerHeight="3dp"
+            android:listSelector="@drawable/selected_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,7 +38,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        android:contentDescription="@string/todo" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ExpensesToolbar"
@@ -39,7 +50,8 @@
         android:visibility="visible"
         app:layout_anchor="@+id/appBarLayout"
         app:layout_anchorGravity="center"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        />
 
     <TextView
         android:id="@+id/ExpensesTextView"
@@ -49,8 +61,6 @@
         android:text="@string/Expenses"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
-        android:textStyle="bold" />
-
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:textStyle="bold"
+        />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

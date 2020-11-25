@@ -8,18 +8,38 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Expenses> list ;
+    private ArrayList<String> list ;
+    private ListView records;
+
+
+
+    String date,amount,category,choice,pMethod,description;
+
+    Expenses _expenses;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.ExpensesToolbar);
         setSupportActionBar(toolbar);
+
+     /*   Bundle bundle = getIntent().getExtras();
+        date = bundle.getString("Date");
+        amount = bundle.getString("Amount");
+
+        list.add(date);
+        list.add(amount);*/
+
+        //records = findViewById(R.id.recordListView);
 
         FloatingActionButton fab = findViewById(R.id.AddButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -28,13 +48,19 @@ public class MainActivity extends AppCompatActivity {
                 openAddExpense();
             }
         });
+
+
+        //System.out.println(date);
+
     }
 
     public void openAddExpense() {
         Intent intent = new Intent(this, addExpensesPage.class);
         startActivity(intent);
     }
-    @Override
+
+
+    /*@Override
     public void onActivityResult(int requestCode,  int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
             if (resultCode == RESULT_OK) {
@@ -46,5 +72,5 @@ public class MainActivity extends AppCompatActivity {
                     dynamicTextView.setText(list.get(i).display());
                 }
             }
-    }
+    }*/
 }
