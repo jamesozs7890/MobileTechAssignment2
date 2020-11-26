@@ -83,16 +83,15 @@
 
             <TextView
                 android:id="@+id/editTextDate"
-                android:layout_marginHorizontal="3dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/empty_border"
                 android:gravity="center_vertical"
                 android:hint="@string/select_date"
                 android:lineSpacingExtra="8sp"
                 android:orientation="horizontal"
-                android:text="@string/DateInput"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -131,7 +130,7 @@
                 android:background="@drawable/empty_border"
                 android:ems="10"
                 android:hint="@string/AmountInput"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -224,7 +223,8 @@
             android:id="@+id/payment"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:checkedButton="@+id/cashRadioButton">
 
             <RadioButton
                 android:id="@+id/cashRadioButton"
