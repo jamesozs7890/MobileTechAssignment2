@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,14 +39,18 @@ public class MainActivity extends AppCompatActivity {
         Bundle receiver = getIntent().getExtras();
         if(receiver != null){
             String date = receiver.getString("Date");
-            String amount = receiver.getString("Amount");
+            Double amount = receiver.getDouble("Amount");
             String category = receiver.getString("Category");
             String choice = receiver.getString("Choice");
             String pMethod = receiver.getString("Payment");
             String desc = receiver.getString("Description");
+            int positionEdited = receiver.getInt("edit");
+
 
             Expenses e = new Expenses(date,amount,category,choice,pMethod,desc);
-
+            if(positionEdited >-1){
+                recordList.getMyRecords().remove(positionEdited);
+            }
             recordList.getMyRecords().add(e);
 
             adapter.notifyDataSetChanged();
@@ -58,6 +63,29 @@ public class MainActivity extends AppCompatActivity {
                 openAddExpense();
             }
         });
+
+        records.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                viewRecord(position);
+            }
+        });
+    }
+
+    public void viewRecord(int pos){
+        Intent i = new Intent(getApplicationContext(),addExpensesPage.class);
+
+        Expenses _e = recordList.getMyRecords().get(pos);
+
+        i.putExtra("Edit",pos);
+        i.putExtra("Date",_e.getExpenseDate());
+        i.putExtra("Amount",_e.getAmount());
+        i.putExtra("Category",_e.getCategory());
+        i.putExtra("Choice",_e.getCategory_choice());
+        i.putExtra("Payment",_e.getpMethod());
+        i.putExtra("Description",_e.getDescription());
+
+        startActivity(i);
     }
 
     public void openAddExpense() {

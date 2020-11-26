@@ -27,6 +27,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static com.example.assignment2.R.id.cashRadioButton;
+import static com.example.assignment2.R.id.creditCardRadioButton;
+import static com.example.assignment2.R.id.eWalletRadioButton;
 
 
 public class addExpensesPage extends AppCompatActivity {
@@ -35,7 +37,7 @@ public class addExpensesPage extends AppCompatActivity {
     private RadioGroup payment;
     private RadioButton pType;
 
-
+    int positionToEdit = -1;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -55,6 +57,10 @@ public class addExpensesPage extends AppCompatActivity {
         final TextView dateEditText = findViewById(R.id.editTextDate);
         final EditText amountEditText = findViewById(R.id.amountEditText);
         final EditText descriptionEditText = findViewById(R.id.extraDescPlainText);
+
+        final RadioButton cash =findViewById(cashRadioButton);
+        final RadioButton eWallet = findViewById(eWalletRadioButton);
+        final RadioButton creCard = findViewById(creditCardRadioButton);
 
         payment = findViewById(R.id.payment);
         Button clearBtn = findViewById(R.id.clearButton);
@@ -98,6 +104,34 @@ public class addExpensesPage extends AppCompatActivity {
             }
         };
 
+        Bundle receiver = getIntent().getExtras();
+        if(receiver!=null){
+            String date = receiver.getString("Date");
+            Double amount = receiver.getDouble("Amount");
+            String _category = receiver.getString("Category");
+            String _choice = receiver.getString("Choice");
+            String pMethod = receiver.getString("Payment");
+            String desc = receiver.getString("Description");
+            positionToEdit = receiver.getInt("edit");
+
+            dateEditText.setText(date);
+            amountEditText.setText(amount.toString());
+
+            switch (pMethod){
+                case "Mobile Wallet":
+                    eWallet.setChecked(true);
+                    break;
+                case "Credit Card":
+                    creCard.setChecked(true);
+                    break;
+                default:
+                    cash.setChecked(true);
+                    break;
+            }
+
+            descriptionEditText.setText(desc);
+
+        }
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +205,7 @@ public class addExpensesPage extends AppCompatActivity {
                     bundle.putString("Choice", categoryChoiceValue);
                     bundle.putString("Payment", pMethod);
                     bundle.putString("Description", description);
+                    bundle.putInt("edit",positionToEdit);
 
                     saveData(bundle);
                 }else{
@@ -185,8 +220,7 @@ public class addExpensesPage extends AppCompatActivity {
                 dateEditText.setText(null);
                 amountEditText.setText(null);
                 descriptionEditText.setText(null);
-                RadioButton b =findViewById(cashRadioButton);
-                b.setChecked(true);
+                cash.setChecked(true);
             }
         });
 
