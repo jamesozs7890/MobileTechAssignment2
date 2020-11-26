@@ -30,11 +30,8 @@ public class addExpensesPage extends AppCompatActivity {
     String date,amount,categoryValue,categoryChoiceValue,pMethod,description;
     private RadioGroup payment;
     private RadioButton pType;
-    Expenses _expenses;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
-    ArrayList<Expenses> list ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +39,8 @@ public class addExpensesPage extends AppCompatActivity {
         setContentView(R.layout.activity_add_expenses_page);
 
 
-        final Spinner category = (Spinner) findViewById(R.id.categorySpinner);
-        final Spinner choice = (Spinner) findViewById(R.id.choiceSpinner);
+        final Spinner category = findViewById(R.id.categorySpinner);
+        final Spinner choice = findViewById(R.id.choiceSpinner);
 
         final String[] food= new String[] {"Breakfast", "Lunch","Dinner","Other"};
         final String[] entertainment = new String[] {"Gaming", "Movies","Activities","Other"};
@@ -56,31 +53,14 @@ public class addExpensesPage extends AppCompatActivity {
         Button clearBtn = findViewById(R.id.clearButton);
         Button saveBtn = findViewById(R.id.saveButton);
         Button backBtn = findViewById(R.id.backButton);
-
-        payment = (RadioGroup) findViewById(R.id.payment);
+        payment = findViewById(R.id.payment);
 
         payment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 pType = findViewById(checkedId);
-                /*switch (checkedId){
-                    case R.id.cashRadioButton:
-                        pMethod = "Cash";
-                        break;
-                    case R.id.eWalletRadioButton:
-                        pMethod = "e-Wallet";
-                        break;
-                    case R.id.creditCardRadioButton:
-                        pMethod = "Credit Card";
-                        break;
-                    default:
-                        pMethod= "Not selected";
-                        break;
-                }*/
             }
         });
-
 
         //final DatePickerDialog.OnDateSetListener finalMDateSetListener = mDateSetListener;
         dateEditText.setOnClickListener(new View.OnClickListener() {
@@ -117,20 +97,32 @@ public class addExpensesPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date= dateEditText.getText().toString();
+
                 amount = amountEditText.getText().toString();
+
                 categoryValue = category.getSelectedItem().toString();
+
                 categoryChoiceValue = choice.getSelectedItem().toString();
-                pMethod = pType.getText().toString();
+
+                if(!pType.isChecked()){
+                    pMethod = "not Selected";
+                }else{
+                    pMethod = pType.getText().toString();
+                }
+
                 description = descriptionEditText.getText().toString();
+
 
                 System.out.println( date + "\n" + amount + "\n" + categoryValue + "\n"
                         + categoryChoiceValue+ "\n" + pMethod +"\n" + description);
 
+
                 Bundle bundle = new Bundle();
+
                 bundle.putString("Date",date);
                 bundle.putString("Amount",amount);
                 bundle.putString("Category",categoryValue);
-                bundle.putString("Choice",categoryValue);
+                bundle.putString("Choice",categoryChoiceValue);
                 bundle.putString("Payment",pMethod);
                 bundle.putString("Description",description);
 
@@ -161,19 +153,19 @@ public class addExpensesPage extends AppCompatActivity {
 
                 switch(position){
                     case 0:
-                        ArrayAdapter<String> foodChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                        ArrayAdapter<String> foodChoice = new ArrayAdapter<>(addExpensesPage.this,
                                 android.R.layout.simple_spinner_item, food);
                         foodChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(foodChoice);
                         break;
                     case 1:
-                        ArrayAdapter<String> entertainmentChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                        ArrayAdapter<String> entertainmentChoice = new ArrayAdapter<>(addExpensesPage.this,
                                 android.R.layout.simple_spinner_item, entertainment);
                         entertainmentChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(entertainmentChoice);
                         break;
                     case 2:
-                        ArrayAdapter<String> transportChoice = new ArrayAdapter<String>(addExpensesPage.this,
+                        ArrayAdapter<String> transportChoice = new ArrayAdapter<>(addExpensesPage.this,
                                 android.R.layout.simple_spinner_item, transport);
                         transportChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(transportChoice);

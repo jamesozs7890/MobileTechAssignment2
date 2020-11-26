@@ -16,14 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<String> list ;
-    private ListView records;
-
-
-
-    String date,amount,category,choice,pMethod,description;
-
-    Expenses _expenses;
+    ListView records;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +25,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.ExpensesToolbar);
         setSupportActionBar(toolbar);
 
-     /*   Bundle bundle = getIntent().getExtras();
-        date = bundle.getString("Date");
-        amount = bundle.getString("Amount");
-
-        list.add(date);
-        list.add(amount);*/
-
-        //records = findViewById(R.id.recordListView);
 
         FloatingActionButton fab = findViewById(R.id.AddButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 openAddExpense();
             }
         });
-
-
-        //System.out.println(date);
 
     }
 
