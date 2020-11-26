@@ -9,7 +9,7 @@
     <string name="DateText">Date:</string>
     <string name="DateInput">Enter The Date Of Expense</string>
 
-    <string name="AmountText">Amount:</string>
+    <string name="AmountText">Amount</string>
     <string name="AmountInput">Enter Amount</string>
 
     <string name="CategoryText">Category</string>
@@ -37,5 +37,12 @@
     <string name="Back">Back</string>
     <string name="select_date">Select Date</string>
     <string name="todo">+</string>
+
+    <string name="choiceText">Choice</string>
+    
+    <string name="categoryType">Category Type</string>
+    <string name="choiceType">Choice Type</string>
+    <string name="pType">Payment Type</string>
+    <string name="descVal">Description Value</string>
 
 </resources>

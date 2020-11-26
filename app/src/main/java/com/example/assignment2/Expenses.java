@@ -8,44 +8,69 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-public class Expenses extends BaseAdapter{
+public class Expenses{
+
     private String expenseDate;
-    /*private String amount;
+    private String amount;
     private String category;
     private String category_choice;
     private String pMethod;
-    private String description;*/
-    LayoutInflater inflter;
+    private String description;
 
-    public Expenses(Context applicationContext, String expenseDate){
+    public Expenses(String expenseDate, String amount, String category, String category_choice, String pMethod, String description) {
         this.expenseDate = expenseDate;
-        /*this.amount = amount;
-        this.category= category;
+        this.amount = amount;
+        this.category = category;
         this.category_choice = category_choice;
         this.pMethod = pMethod;
-        this.description  = description;*/
-        inflter = (LayoutInflater.from(applicationContext));
+        this.description = description;
     }
 
-    @Override
-    public int getCount() {
-        return 0;
+    public String getExpenseDate() {
+        return expenseDate;
     }
 
-    @Override
-    public Object getItem(int position) {
-        return null;
+    public void setExpenseDate(String expenseDate) {
+        this.expenseDate = expenseDate;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
+    public String getAmount() {
+        return amount;
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup vGroup) {
-        /*view =  inflter.inflate(R.layout.activity_main,null);
-        TextView title = (TextView) view.findViewById(R.id.listViewName);*/
-        return null;
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory_choice() {
+        return category_choice;
+    }
+
+    public void setCategory_choice(String category_choice) {
+        this.category_choice = category_choice;
+    }
+
+    public String getpMethod() {
+        return pMethod;
+    }
+
+    public void setpMethod(String pMethod) {
+        this.pMethod = pMethod;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

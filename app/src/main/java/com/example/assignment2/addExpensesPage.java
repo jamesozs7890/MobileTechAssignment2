@@ -51,7 +51,7 @@ public class addExpensesPage extends AppCompatActivity {
         final EditText descriptionEditText = findViewById(R.id.extraDescPlainText);
 
         Button clearBtn = findViewById(R.id.clearButton);
-        Button saveBtn = findViewById(R.id.saveButton);
+        final Button saveBtn = findViewById(R.id.saveButton);
         Button backBtn = findViewById(R.id.backButton);
         payment = findViewById(R.id.payment);
 
@@ -125,6 +125,8 @@ public class addExpensesPage extends AppCompatActivity {
                 bundle.putString("Choice",categoryChoiceValue);
                 bundle.putString("Payment",pMethod);
                 bundle.putString("Description",description);
+
+                saveData(bundle);
 
             }
         });

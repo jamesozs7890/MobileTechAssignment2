@@ -17,6 +17,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     ListView records;
+    recordAdapter adapter;
+    myRecords recordList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,29 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.ExpensesToolbar);
         setSupportActionBar(toolbar);
 
+        records = findViewById(R.id.recordListView);
+
+        recordList = ((myApp)this.getApplication()).getRecords();
+
+        adapter = new recordAdapter(MainActivity.this,recordList);
+        records.setAdapter(adapter);
+
+        //listen,capture,create,add
+        Bundle receiver = getIntent().getExtras();
+        if(receiver != null){
+            String date = receiver.getString("Date");
+            String amount = receiver.getString("Amount");
+            String category = receiver.getString("Category");
+            String choice = receiver.getString("Choice");
+            String pMethod = receiver.getString("Payment");
+            String desc = receiver.getString("Description");
+
+            Expenses e = new Expenses(date,amount,category,choice,pMethod,desc);
+
+            recordList.getMyRecords().add(e);
+
+            adapter.notifyDataSetChanged();
+        }
 
         FloatingActionButton fab = findViewById(R.id.AddButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -33,26 +58,10 @@ public class MainActivity extends AppCompatActivity {
                 openAddExpense();
             }
         });
-
     }
 
     public void openAddExpense() {
         Intent intent = new Intent(this, addExpensesPage.class);
         startActivity(intent);
     }
-
-
-    /*@Override
-    public void onActivityResult(int requestCode,  int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-            if (resultCode == RESULT_OK) {
-                Bundle bundleObject = getIntent().getExtras();
-                list = (ArrayList<Expenses>) bundleObject.getSerializable("List");
-                TextView dynamicTextView = new TextView(this);
-                dynamicTextView.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
-                for (int i = 0;i< list.size();i++) {
-                    dynamicTextView.setText(list.get(i).display());
-                }
-            }
-    }*/
 }
