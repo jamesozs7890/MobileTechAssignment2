@@ -35,7 +35,7 @@
     <string name="Save">Save</string>
     <string name="Clear">Clear</string>
     <string name="Back">Back</string>
-    <string name="select_date">Select Date</string>
+    <string name="select_date">Click Me to Select Date</string>
     <string name="todo">+</string>
 
     <string name="choiceText">Choice</string>

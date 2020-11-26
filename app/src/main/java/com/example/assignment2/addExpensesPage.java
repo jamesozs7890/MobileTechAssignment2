@@ -2,7 +2,9 @@ package com.example.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -24,12 +26,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.example.assignment2.R.id.cashRadioButton;
+
 
 public class addExpensesPage extends AppCompatActivity {
-
-    String date,amount,categoryValue,categoryChoiceValue,pMethod,description;
+    Double amount;
+    String date,categoryValue,categoryChoiceValue,pMethod,description;
     private RadioGroup payment;
     private RadioButton pType;
+
+
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -50,17 +56,18 @@ public class addExpensesPage extends AppCompatActivity {
         final EditText amountEditText = findViewById(R.id.amountEditText);
         final EditText descriptionEditText = findViewById(R.id.extraDescPlainText);
 
-        Button clearBtn = findViewById(R.id.clearButton);
-        final Button saveBtn = findViewById(R.id.saveButton);
-        Button backBtn = findViewById(R.id.backButton);
         payment = findViewById(R.id.payment);
+        Button clearBtn = findViewById(R.id.clearButton);
+        Button saveBtn = findViewById(R.id.saveButton);
+        Button backBtn = findViewById(R.id.backButton);
+
 
         payment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                pType = findViewById(checkedId);
-            }
-        });
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    pType = findViewById(checkedId);
+                }
+            });
 
         //final DatePickerDialog.OnDateSetListener finalMDateSetListener = mDateSetListener;
         dateEditText.setOnClickListener(new View.OnClickListener() {
@@ -96,38 +103,77 @@ public class addExpensesPage extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                date= dateEditText.getText().toString();
+                boolean error = false;
+                String msg ="List of Error: ";
+                int i = 0;
+                if (dateEditText.getText().toString().isEmpty()) {
+                    error = true;
+                    msg += " No Date Selection";
+                    i +=1;
+                } else{
+                    date= dateEditText.getText().toString();
+                }
+                if (amountEditText.getText().toString().isEmpty()) {
+                    if (i != 0){
+                        msg += ", No Amount Entered";
+                    }else{
+                        msg += "No Amount Entered";
+                    }
+                    i+=1;
+                    error = true;
+                } else{
+                    if (amountEditText.getText().toString().startsWith(".")){
+                        i+=1;
+                        error = true;
+                        if (i != 0){
+                            msg += ", Invalid Number";
+                        }else{
+                            msg += " Invalid Number";
+                        }
+                    }else{
+                        amount = Double.parseDouble(amountEditText.getText().toString());
+                        String.format("%.2f", amount);
+                    }
+                }
+                // get selected radio button from radioGroup
+                int selectedId = payment.getCheckedRadioButtonId();
 
-                amount = amountEditText.getText().toString();
-
+                // find the radiobutton by returned id
+                pType = findViewById(selectedId);
+                pMethod = pType.getText().toString();
                 categoryValue = category.getSelectedItem().toString();
-
                 categoryChoiceValue = choice.getSelectedItem().toString();
 
-                if(!pType.isChecked()){
-                    pMethod = "not Selected";
+                if (descriptionEditText.getText().toString().isEmpty()){
+                    i+=1;
+                    error = true;
+                    if (i != 0){
+                        msg += ", Empty description";
+                    }else {
+                        msg += "Empty description";
+                    }
                 }else{
-                    pMethod = pType.getText().toString();
+                    description = descriptionEditText.getText().toString();
                 }
 
-                description = descriptionEditText.getText().toString();
 
 
-                System.out.println( date + "\n" + amount + "\n" + categoryValue + "\n"
+                 /* System.out.println( date + "\n" + amount + "\n" + categoryValue + "\n"
                         + categoryChoiceValue+ "\n" + pMethod +"\n" + description);
+                  */
 
+                if (error == false) {
+                    Bundle bundle = new Bundle();
 
-                Bundle bundle = new Bundle();
-
-                bundle.putString("Date",date);
-                bundle.putString("Amount",amount);
-                bundle.putString("Category",categoryValue);
-                bundle.putString("Choice",categoryChoiceValue);
-                bundle.putString("Payment",pMethod);
-                bundle.putString("Description",description);
-
-                saveData(bundle);
-
+                    bundle.putString("Date", date);
+                    bundle.putDouble("Amount", amount);
+                    bundle.putString("Category", categoryValue);
+                    bundle.putString("Choice", categoryChoiceValue);
+                    bundle.putString("Payment", pMethod);
+                    bundle.putString("Description", description);
+                }else{
+                    alertDialog(msg,i);
+                }
             }
         });
 
@@ -137,7 +183,8 @@ public class addExpensesPage extends AppCompatActivity {
                 dateEditText.setText(null);
                 amountEditText.setText(null);
                 descriptionEditText.setText(null);
-                pType.setChecked(false);
+                RadioButton b = (RadioButton) findViewById(cashRadioButton);
+                b.setChecked(true);
             }
         });
 
@@ -191,5 +238,19 @@ public class addExpensesPage extends AppCompatActivity {
         Intent save = new Intent(this,MainActivity.class);
         save.putExtras(bundle);
         startActivity(save);
+    }
+    private void alertDialog(String msg, int i) {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage(msg);
+        dialog.setTitle( i + " Error Found!!!!");
+        dialog.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Toast.makeText(getApplicationContext(),"Make sure no missing input",Toast.LENGTH_LONG).show();
+                    }
+                });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
     }
 }
