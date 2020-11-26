@@ -23,6 +23,7 @@
 
     <TextView
         android:id="@+id/addExpenseTitle"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -62,6 +63,7 @@
 
             <TextView
                 android:id="@+id/dataTextView"
+                android:layout_marginHorizontal="3dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5sp"
@@ -81,6 +83,7 @@
 
             <TextView
                 android:id="@+id/editTextDate"
+                android:layout_marginHorizontal="3dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -105,6 +108,7 @@
 
             <TextView
                 android:id="@+id/amountTextView"
+                android:layout_marginHorizontal="3dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -121,6 +125,7 @@
                 android:id="@+id/amountEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_weight="1"
                 android:autofillHints="@string/AmountInput"
                 android:background="@drawable/empty_border"
@@ -145,6 +150,8 @@
 
         <TextView
             android:id="@+id/categoryTextView"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/border"
@@ -164,6 +171,7 @@
 
             <Spinner
                 android:id="@+id/categorySpinner"
+                android:layout_marginHorizontal="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -175,6 +183,7 @@
 
             <Spinner
                 android:id="@+id/choiceSpinner"
+                android:layout_marginHorizontal="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -198,6 +207,8 @@
 
         <TextView
             android:id="@+id/paymentText"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/border"
@@ -244,80 +255,92 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/extraDescLayout"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButtons">
+            <LinearLayout
+                android:id="@+id/extraDescLayout"
+                android:layout_width="410dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioButtons">
 
-        <TextView
-            android:id="@+id/extraDescTextView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/border"
-            android:fontFamily="@font/autour_one"
-            android:gravity="center_vertical"
-            android:text="@string/ExtraDescriptionText"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/extraDescTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/border"
+                    android:fontFamily="@font/autour_one"
+                    android:gravity="center_vertical"
+                    android:text="@string/ExtraDescriptionText"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    tools:ignore="RtlCompat" />
 
-        <EditText
-            android:id="@+id/extraDescPlainText"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:autofillHints=""
-            android:background="@drawable/empty_border"
-            android:ems="10"
-            android:hint="@string/EnterDescriptionHere"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/extraDescPlainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:autofillHints=""
+                    android:background="@drawable/empty_border"
+                    android:ems="10"
+                    android:hint="@string/EnterDescriptionHere"
+                    android:inputType="textMultiLine|textPersonName"
+                    android:maxLength="300"
+                    android:overScrollMode="ifContentScrolls"
+                    android:padding="10dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:textAlignment="textStart" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttonsLayout"
-        android:layout_width="410dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/extraDescLayout">
+            <LinearLayout
+                android:id="@+id/buttonsLayout"
+                android:layout_width="404dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="28dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/extraDescLayout">
 
-        <Button
-            android:id="@+id/saveButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:text="@string/Save"
-            android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/saveButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="@string/Save"
+                    android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/clearButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:text="@string/Clear"
-            android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/clearButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="@string/Clear"
+                    android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/backButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:text="@string/Back"
-            android:textColor="@color/white" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/backButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="@string/Back"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
