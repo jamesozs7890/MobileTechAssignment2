@@ -171,6 +171,8 @@ public class addExpensesPage extends AppCompatActivity {
                     bundle.putString("Choice", categoryChoiceValue);
                     bundle.putString("Payment", pMethod);
                     bundle.putString("Description", description);
+
+                    saveData(bundle);
                 }else{
                     alertDialog(msg,i);
                 }
@@ -183,7 +185,7 @@ public class addExpensesPage extends AppCompatActivity {
                 dateEditText.setText(null);
                 amountEditText.setText(null);
                 descriptionEditText.setText(null);
-                RadioButton b = (RadioButton) findViewById(cashRadioButton);
+                RadioButton b =findViewById(cashRadioButton);
                 b.setChecked(true);
             }
         });

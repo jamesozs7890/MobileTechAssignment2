@@ -12,5 +12,5 @@ public class myApp extends Application {
     public void setRecords(myRecords records) {
         this.records = records;
     }
-    
+
 }
