@@ -1,5 +1,7 @@
 package com.example.assignment2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,23 +76,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewRecord(int pos){
-        Intent i = new Intent(getApplicationContext(),addExpensesPage.class);
-
-        Expenses _e = recordList.getMyRecords().get(pos);
-
-        i.putExtra("Edit",pos);
-        i.putExtra("Date",_e.getExpenseDate());
-        i.putExtra("Amount",_e.getAmount());
-        i.putExtra("Category",_e.getCategory());
-        i.putExtra("Choice",_e.getCategory_choice());
-        i.putExtra("Payment",_e.getpMethod());
-        i.putExtra("Description",_e.getDescription());
-
-        startActivity(i);
+        alertDialog(pos);
     }
 
     public void openAddExpense() {
         Intent intent = new Intent(this, addExpensesPage.class);
         startActivity(intent);
+    }
+    private void alertDialog(final int pos) {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage("Please choose a session");
+        dialog.setTitle( " Mode");
+        dialog.setPositiveButton("Edit",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Intent i = new Intent(getApplicationContext(),addExpensesPage.class);
+
+                        Expenses _e = recordList.getMyRecords().get(pos);
+
+                        i.putExtra("Edit",pos);
+                        i.putExtra("Date",_e.getExpenseDate());
+                        i.putExtra("Amount",_e.getAmount());
+                        i.putExtra("Category",_e.getCategory());
+                        i.putExtra("Choice",_e.getCategory_choice());
+                        i.putExtra("Payment",_e.getpMethod());
+                        i.putExtra("Description",_e.getDescription());
+
+                        startActivity(i);
+                    }
+                });
+        dialog.setNegativeButton(
+                "Delete",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        recordList.getMyRecords().remove(pos);
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
     }
 }
