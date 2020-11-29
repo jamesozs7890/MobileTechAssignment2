@@ -5,9 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ListView records;
     recordAdapter adapter;
     myRecords recordList;
+    private CoordinatorLayout coordinatorLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.ExpensesToolbar);
         setSupportActionBar(toolbar);
-
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
         records = findViewById(R.id.recordListView);
 
         recordList = ((myApp)this.getApplication()).getRecords();
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle receiver = getIntent().getExtras();
         if(receiver != null){
             String date = receiver.getString("Date");
-            Double amount = receiver.getDouble("Amount");
+            String amount = receiver.getString("Amount");
             String category = receiver.getString("Category");
             String choice = receiver.getString("Choice");
             String pMethod = receiver.getString("Payment");
@@ -56,7 +61,17 @@ public class MainActivity extends AppCompatActivity {
             }
             recordList.getMyRecords().add(e);
 
+
             adapter.notifyDataSetChanged();
+            double tAmount = 0;
+            String total = "";
+            for (int i =0;  i<adapter.getCount() ; i++){
+                double value = Double.parseDouble(adapter.getItem(i).getAmount());
+                tAmount += value;
+
+            }
+            total = String.format("%.2f", tAmount);
+            Snackbar.make(coordinatorLayout , "Total Expense Spent: RM" + total, Snackbar.LENGTH_LONG).show();
         }
 
         FloatingActionButton fab = findViewById(R.id.AddButton);

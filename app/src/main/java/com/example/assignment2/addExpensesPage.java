@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,8 +33,8 @@ import static com.example.assignment2.R.id.eWalletRadioButton;
 
 
 public class addExpensesPage extends AppCompatActivity {
-    Double amount;
-    String date,categoryValue,categoryChoiceValue,pMethod,description;
+
+    String date,categoryValue,categoryChoiceValue,pMethod,description,amount;
     private RadioGroup payment;
     private RadioButton pType;
 
@@ -107,7 +108,7 @@ public class addExpensesPage extends AppCompatActivity {
         Bundle receiver = getIntent().getExtras();
         if(receiver!=null){
             String date = receiver.getString("Date");
-            Double amount = receiver.getDouble("Amount");
+            String amount = receiver.getString("Amount");
             String _category = receiver.getString("Category");
             String _choice = receiver.getString("Choice");
             String pMethod = receiver.getString("Payment");
@@ -115,7 +116,7 @@ public class addExpensesPage extends AppCompatActivity {
             positionToEdit = receiver.getInt("edit");
 
             dateEditText.setText(date);
-            amountEditText.setText(amount.toString());
+            amountEditText.setText(amount);
 
             switch (pMethod){
                 case "Mobile Wallet":
@@ -156,7 +157,7 @@ public class addExpensesPage extends AppCompatActivity {
                     i+=1;
                     error = true;
                 } else{
-                    if (amountEditText.getText().toString().startsWith(".")){
+                    if (amountEditText.getText().toString().startsWith(".") || amountEditText.getText().toString().startsWith("0")){
                         i+=1;
                         error = true;
                         if (i != 0){
@@ -165,8 +166,20 @@ public class addExpensesPage extends AppCompatActivity {
                             msg += " Invalid Number";
                         }
                     }else{
-                        amount = Double.parseDouble(amountEditText.getText().toString());
-                        String.format("%.2f", amount);
+                        if(amountEditText.length() > 9 ){
+                            i+=1;
+                            error = true;
+                            if (i != 0){
+                                msg += ", Maximum a million";
+                            }else {
+                                msg += " Maximum a million";
+                            }
+                        }else{
+                                double input = Double.parseDouble(amountEditText.getText().toString());
+                                amount = String.format("%.2f", input );
+                        }
+
+
                     }
                 }
                 // get selected radio button from radioGroup
@@ -200,7 +213,7 @@ public class addExpensesPage extends AppCompatActivity {
                     Bundle bundle = new Bundle();
 
                     bundle.putString("Date", date);
-                    bundle.putDouble("Amount", amount);
+                    bundle.putString("Amount", amount);
                     bundle.putString("Category", categoryValue);
                     bundle.putString("Choice", categoryChoiceValue);
                     bundle.putString("Payment", pMethod);

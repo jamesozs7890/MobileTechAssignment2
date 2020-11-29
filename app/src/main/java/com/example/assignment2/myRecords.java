@@ -24,7 +24,6 @@ public class myRecords {
             myRecords.add(_e);
         }
     }
-
     public List<Expenses> getMyRecords() {
         return myRecords;
     }

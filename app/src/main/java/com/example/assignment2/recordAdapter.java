@@ -27,7 +27,6 @@ public class recordAdapter extends BaseAdapter {
     public Expenses getItem(int position) {
         return _records.getMyRecords().get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return 0;

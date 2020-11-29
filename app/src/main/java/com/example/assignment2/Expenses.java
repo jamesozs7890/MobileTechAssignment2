@@ -11,13 +11,13 @@ import android.widget.TextView;
 public class Expenses{
 
     private String expenseDate;
-    private Double amount;
+    private String amount;
     private String category;
     private String category_choice;
     private String pMethod;
     private String description;
 
-    public Expenses(String expenseDate, Double amount, String category, String category_choice, String pMethod, String description) {
+    public Expenses(String expenseDate, String amount, String category, String category_choice, String pMethod, String description) {
         this.expenseDate = expenseDate;
         this.amount = amount;
         this.category = category;
@@ -34,11 +34,11 @@ public class Expenses{
         this.expenseDate = expenseDate;
     }
 
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
