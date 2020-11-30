@@ -37,7 +37,9 @@ public class addExpensesPage extends AppCompatActivity {
     String date,categoryValue,categoryChoiceValue,pMethod,description,amount;
     private RadioGroup payment;
     private RadioButton pType;
-
+    //Use for edit(Line 41 and 42)
+    private String getValue;
+    private boolean checkChoice = false;
     int positionToEdit = -1;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -53,7 +55,7 @@ public class addExpensesPage extends AppCompatActivity {
 
         final String[] food= new String[] {"Breakfast", "Lunch","Dinner","Other"};
         final String[] entertainment = new String[] {"Gaming", "Movies","Activities","Other"};
-        final String[] transport = new String[] {"Car", "Bus","Other"};
+        final String[] transport = new String[] {"Car", "Bus","Grab"," Other"};
 
         final TextView dateEditText = findViewById(R.id.editTextDate);
         final EditText amountEditText = findViewById(R.id.amountEditText);
@@ -114,13 +116,15 @@ public class addExpensesPage extends AppCompatActivity {
             String pMethod = receiver.getString("Payment");
             String desc = receiver.getString("Description");
             positionToEdit = receiver.getInt("edit");
-
+            //Set value in textField,textBox and others
             dateEditText.setText(date);
             amountEditText.setText(amount);
-
+            //Enable true to on edit mode
+            checkChoice = true;
             switch (pMethod){
                 case "Mobile Wallet":
                     eWallet.setChecked(true);
+
                     break;
                 case "Credit Card":
                     creCard.setChecked(true);
@@ -129,6 +133,19 @@ public class addExpensesPage extends AppCompatActivity {
                     cash.setChecked(true);
                     break;
             }
+            switch (_category){
+                case "Food":
+                    category.setSelection(0);
+                    break;
+                case "Transport":
+                    category.setSelection(2);
+                    break;
+                default:
+                    category.setSelection(1);
+                    break;
+            }
+            //Initialise choice to another variable to use outside class
+            getValue = _choice;
 
             descriptionEditText.setText(desc);
 
@@ -259,18 +276,70 @@ public class addExpensesPage extends AppCompatActivity {
                                 android.R.layout.simple_spinner_item, food);
                         foodChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(foodChoice);
+                        //Check whether or not is edit mode
+                        if (checkChoice == true){
+                            //Change to Spinner item if is in edit mode
+                            switch (getValue){
+                                case "Breakfast":
+                                    choice.setSelection(0);
+                                    break;
+                                case "Lunch":
+                                    choice.setSelection(1);
+                                    break;
+                                case "Dinner":
+                                    choice.setSelection(2);
+                                    break;
+                                default:
+                                    choice.setSelection(3);
+                                    break;
+                            }
+                        }
                         break;
                     case 1:
                         ArrayAdapter<String> entertainmentChoice = new ArrayAdapter<>(addExpensesPage.this,
                                 android.R.layout.simple_spinner_item, entertainment);
                         entertainmentChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(entertainmentChoice);
+                        if (checkChoice == true){
+                            switch (getValue){
+                                case "Gaming":
+                                    choice.setSelection(0);
+                                    break;
+                                case "Movies":
+                                    choice.setSelection(1);
+                                    break;
+                                case "Activities":
+                                    choice.setSelection(2);
+                                    break;
+                                default:
+                                    choice.setSelection(3);
+                                    break;
+
+                            }
+                        }
                         break;
                     case 2:
                         ArrayAdapter<String> transportChoice = new ArrayAdapter<>(addExpensesPage.this,
                                 android.R.layout.simple_spinner_item, transport);
                         transportChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         choice.setAdapter(transportChoice);
+                        if (checkChoice == true){
+                            switch (getValue){
+                                case "Car":
+                                    choice.setSelection(0);
+                                    break;
+                                case "Bus":
+                                    choice.setSelection(1);
+                                    break;
+                                case "Grab":
+                                    choice.setSelection(2);
+                                    break;
+                                default:
+                                    choice.setSelection(3);
+                                    break;
+
+                            }
+                        }
                         break;
                 }
             }
