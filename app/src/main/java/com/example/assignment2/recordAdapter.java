@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+
 public class recordAdapter extends BaseAdapter {
 
     Activity mActivity;
@@ -18,20 +19,25 @@ public class recordAdapter extends BaseAdapter {
         this._records = _records;
     }
 
+    //To get the length of the list
     @Override
     public int getCount() {
         return _records.getMyRecords().size();
     }
 
+    //To get item in the list
     @Override
     public Expenses getItem(int position) {
         return _records.getMyRecords().get(position);
     }
+
+    //To get an item's id
     @Override
     public long getItemId(int position) {
         return 0;
     }
 
+    //To assign values to the related views and return the view
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View recordTile;

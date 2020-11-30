@@ -3,16 +3,13 @@ package com.example.assignment2;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class myRecords {
 
     List<Expenses> myRecords;
     Expenses _e;
 
-
-    public myRecords(List<Expenses> myRecords) {
-        this.myRecords = myRecords;
-    }
-
+    //to display list data
     public myRecords(){
         this.myRecords = new ArrayList<>();
 
@@ -28,7 +25,4 @@ public class myRecords {
         return myRecords;
     }
 
-    public void setMyRecords(List<Expenses> myRecords) {
-        this.myRecords = myRecords;
-    }
 }
