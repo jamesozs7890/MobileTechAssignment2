@@ -46,7 +46,7 @@ public class recordAdapter extends BaseAdapter {
         Expenses e = this.getItem(position);
 
         date.setText(e.getExpenseDate());
-        amountVal.setText(e.getAmount().toString());
+        amountVal.setText("RM" + e.getAmount().toString());
         categoryVal.setText(e.getCategory());
 
         return recordTile;
