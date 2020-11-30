@@ -9,7 +9,7 @@
     <string name="DateText">Date:</string>
     <string name="DateInput">Enter The Date Of Expense</string>
 
-    <string name="AmountText">Amount</string>
+    <string name="AmountText">Amount (RM)</string>
     <string name="AmountInput">Enter Amount</string>
 
     <string name="CategoryText">Category</string>
