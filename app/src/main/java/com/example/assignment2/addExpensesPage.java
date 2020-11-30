@@ -33,7 +33,7 @@ import static com.example.assignment2.R.id.eWalletRadioButton;
 
 
 public class addExpensesPage extends AppCompatActivity {
-
+    //Declaration
     String date,categoryValue,categoryChoiceValue,pMethod,description,amount;
     private RadioGroup payment;
     private RadioButton pType;
@@ -47,7 +47,7 @@ public class addExpensesPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expenses_page);
 
-
+        //Initialise & Declaration of buttons,textview and more
         final Spinner category = findViewById(R.id.categorySpinner);
         final Spinner choice = findViewById(R.id.choiceSpinner);
 
@@ -68,7 +68,7 @@ public class addExpensesPage extends AppCompatActivity {
         Button saveBtn = findViewById(R.id.saveButton);
         Button backBtn = findViewById(R.id.backButton);
 
-
+        //Initialise the radio button
         payment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -76,7 +76,7 @@ public class addExpensesPage extends AppCompatActivity {
                 }
             });
 
-        //final DatePickerDialog.OnDateSetListener finalMDateSetListener = mDateSetListener;
+        //Show Calendar for user to choose
         dateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,9 +103,10 @@ public class addExpensesPage extends AppCompatActivity {
                 dateEditText.setText(date);
             }
         };
-
+        //Check if user is edit
         Bundle receiver = getIntent().getExtras();
         if(receiver!=null){
+            //Get value when user go into edit mode
             String date = receiver.getString("Date");
             String amount = receiver.getString("Amount");
             String _category = receiver.getString("Category");
@@ -133,13 +134,15 @@ public class addExpensesPage extends AppCompatActivity {
 
         }
 
-
+        //Save Button
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Debugging
                 boolean error = false;
                 String msg ="List of Error: ";
                 int i = 0;
+                //Date Debug & initialise
                 if (dateEditText.getText().toString().isEmpty()) {
                     error = true;
                     msg += " No Date Selection";
@@ -147,6 +150,7 @@ public class addExpensesPage extends AppCompatActivity {
                 } else{
                     date= dateEditText.getText().toString();
                 }
+                //Amount Debug & initialise
                 if (amountEditText.getText().toString().isEmpty()) {
                     if (i != 0){
                         msg += ", No Amount Entered";
@@ -189,7 +193,7 @@ public class addExpensesPage extends AppCompatActivity {
                 pMethod = pType.getText().toString();
                 categoryValue = category.getSelectedItem().toString();
                 categoryChoiceValue = choice.getSelectedItem().toString();
-
+                //Description debug & initialise
                 if (descriptionEditText.getText().toString().isEmpty()){
                     i+=1;
                     error = true;
@@ -207,7 +211,7 @@ public class addExpensesPage extends AppCompatActivity {
                  /* System.out.println( date + "\n" + amount + "\n" + categoryValue + "\n"
                         + categoryChoiceValue+ "\n" + pMethod +"\n" + description);
                   */
-
+                //Error will be true if input error and then value not pass
                 if (error == false) {
                     Bundle bundle = new Bundle();
 
@@ -221,11 +225,12 @@ public class addExpensesPage extends AppCompatActivity {
 
                     saveData(bundle);
                 }else{
+                    //Show error msg
                     alertDialog(msg,i);
                 }
             }
         });
-
+        //Buttons
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,17 +281,18 @@ public class addExpensesPage extends AppCompatActivity {
 
         });
     }
-
+    //Go to Activity
     public void naviBack(){
         Intent navi = new Intent(this,MainActivity.class);
         startActivity(navi);
     }
-
+    //Save Data
     public void saveData(Bundle bundle){
         Intent save = new Intent(this,MainActivity.class);
         save.putExtras(bundle);
         startActivity(save);
     }
+    //Error Msg
     private void alertDialog(String msg, int i) {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setMessage(msg);

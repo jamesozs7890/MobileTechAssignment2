@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 
 public class Expenses{
-
+    //Declaration of class
     private String expenseDate;
     private String amount;
     private String category;
     private String category_choice;
     private String pMethod;
     private String description;
-
+    //Constructor
     public Expenses(String expenseDate, String amount, String category, String category_choice, String pMethod, String description) {
         this.expenseDate = expenseDate;
         this.amount = amount;
@@ -25,7 +25,7 @@ public class Expenses{
         this.pMethod = pMethod;
         this.description = description;
     }
-
+    //Getter And Setter
     public String getExpenseDate() {
         return expenseDate;
     }

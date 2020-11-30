@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, addExpensesPage.class);
         startActivity(intent);
     }
+    //Delete dialog(Confirmation)
     private void alertDialog(final int pos) {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setMessage("Do you sure you want to delete");
