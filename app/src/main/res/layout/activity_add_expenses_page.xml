@@ -107,16 +107,16 @@
 
             <TextView
                 android:id="@+id/amountTextView"
-                android:layout_marginHorizontal="3dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
                 android:gravity="center_vertical"
                 android:text="@string/AmountText"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
 
