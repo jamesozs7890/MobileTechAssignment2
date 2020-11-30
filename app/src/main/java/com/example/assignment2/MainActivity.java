@@ -72,12 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
             total = String.format("%.2f", tAmount);
             Snackbar.make(coordinatorLayout , "Total Expense Spent: RM" + total, Snackbar.LENGTH_LONG).show();
-            if (hello == true){
-                Toast toast = null;
-                toast.setText("Hello");
-                toast.show();
-            }
-            hello = false;
+
         }
 
         FloatingActionButton fab = findViewById(R.id.AddButton);
@@ -133,6 +128,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         recordList.getMyRecords().remove(pos);
+                        Toast toast=Toast.makeText(MainActivity.this,"Deleted",Toast.LENGTH_SHORT);
+                        toast.setMargin(50,50);
+                        toast.show();
+                        double tAmount = 0;
+                        String total = "";
+                        for (int i =0;  i<adapter.getCount() ; i++){
+                            double value = Double.parseDouble(adapter.getItem(i).getAmount());
+                            tAmount += value;
+
+                        }
+                        total = String.format("%.2f", tAmount);
+                        Snackbar.make(coordinatorLayout , "Total Expense Spent(After Delete): RM" + total, Snackbar.LENGTH_LONG).show();
                         adapter.notifyDataSetChanged();
                     }
                 });
