@@ -87,7 +87,6 @@ public class addExpensesPage extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         addExpensesPage.this, mDateSetListener, year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
             
