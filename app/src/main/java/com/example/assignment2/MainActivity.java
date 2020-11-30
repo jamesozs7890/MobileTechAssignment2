@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     recordAdapter adapter;
     myRecords recordList;
     private CoordinatorLayout coordinatorLayout;
-
+    private boolean hello = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
             }
             total = String.format("%.2f", tAmount);
             Snackbar.make(coordinatorLayout , "Total Expense Spent: RM" + total, Snackbar.LENGTH_LONG).show();
+            if (hello == true){
+                Toast toast = null;
+                toast.setText("Hello");
+                toast.show();
+            }
+            hello = false;
         }
 
         FloatingActionButton fab = findViewById(R.id.AddButton);
@@ -88,15 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 viewRecord(position);
             }
         });
-        records.setOnLongClickListener(new AdapterView.OnLongClickListener() {
+        records.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-                alertDialog(pos);
-            }
-
-            @Override
-            public boolean onLongClick(AdapterView<?> parent, View view, int position, long id) {
-                viewRecord(position);
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                alertDialog(position);
+                return true;
             }
         });
     }
@@ -125,14 +127,13 @@ public class MainActivity extends AppCompatActivity {
     private void alertDialog(final int pos) {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setMessage("Do you sure you want to delete");
-        dialog.setTitle( " Delete mode");
+        dialog.setTitle( "Delete session");
         dialog.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         recordList.getMyRecords().remove(pos);
-                        finish();
-                        startActivity(getIntent());
+                        adapter.notifyDataSetChanged();
                     }
                 });
         dialog.setNegativeButton(
